@@ -61,10 +61,10 @@ logger = logging.getLogger(__name__)
 # CONFIGURAZIONE 
 # ================================================================================================
 BASE_VIDEO_FOLDER = r"E:\DatasetNuovo\Video4k"
-BASE_ASRED_FOLDER = r"E:\DatasetNuovo\pipeline_4k_altaqualita\Asred"
-BASE_FRAMES_FOLDER = r"E:\DatasetNuovo\pipeline_4k_altaqualita\Frame_video"
+BASE_ASRED_FOLDER = r"E:\DatasetNuovo\pipeline4k\Asred"
+BASE_FRAMES_FOLDER = r"E:\DatasetNuovo\pipeline4k\Frame_video"
 
-BASE_OUTPUT_SEGMENTATION = r"E:\DatasetNuovo\v3_base\output" # Cartella dei risultati della pipeline di segmentazione
+BASE_OUTPUT_SEGMENTATION = r"E:\DatasetNuovo\TESI\output" # Cartella <output> dei risultati della pipeline di segmentazione
 
 # Percorso agli strumenti esterni: ASRED e DeepPlate. 
 STRUMENTI_FOLDER = r"C:\Users\root\Desktop\programmi"

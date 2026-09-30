@@ -1442,7 +1442,7 @@ def main():
 
     DC = raccogli_caratteri(gt, cartelle, soglia)
     stampa_confusione(DC)
-    destinazione = base.parent / "evaluation_report_nuovo.pdf"
+    destinazione = base.parent / "evaluation_report.pdf"
     genera_pdf(destinazione, DC, tot, cons_tot, base, soglia)
 
     if mancanti:

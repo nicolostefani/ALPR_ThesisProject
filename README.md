@@ -14,7 +14,7 @@ The system consists of two main files, plus an experimental variant used for com
 ### 1. `Pipeline.py` (Core Pipeline & Grid Search)
 Manages the entire processing chain:
 
-*   **Preprocessing:** Runs ASRED to extract initial bounding boxes.
+*   **Detection and Tracking (ASRED):** Runs ASRED on each video to detect and track license plates. Each detection is cropped with a 25% margin around the ASRED bounding box and linked to its track ID, so readings can later be consolidated per physical plate.
 *   **Edge Segmentation (Adaptive):** Applies adaptive scaling (targeting a license plate height of 90px) and uses locally calculated multi-threshold Canny algorithms to extract the edges.
 *   **Character Refinement:** Reconstructs the exact geometry of the license plate (including tilt and side bands) based on the *baseline* of the detected characters, correcting for perspective distortions.
 *   **False Positive Filtering:** Analyzes warm colors (red, amber, burnt yellow) and text structure to filter out headlights, reflectors, and stop signs.
@@ -29,7 +29,7 @@ Module dedicated to rigorous performance analysis against the *ground truth*:
 *   **OCR Analysis:** Measures character-level accuracy (confusion matrix), Levenshtein distance, and evaluates the impact of temporal consolidation compared to single-frame reading.
 *   **PDF Report:** Automatically generates a technical report in PDF format containing temporal probability heatmaps and character-by-character visual comparisons.
 
-  ### 3. Blackhat + Sobel X Variant (`Pipeline_sobel_4k.py`)
+### 3. Blackhat + Sobel X Variant (`Pipeline_sobel_4k.py`)
 Experimental script, used as a baseline for comparison with the adaptive edge segmentation in `Pipeline.py`. It follows the same structure: video → ASRED → cropped images → segmentation → DeepPlate.
 *   **Simpler segmentation:** uses morphological Blackhat + Sobel gradient on the X-axis + Otsu threshold to isolate the compact block of the license plate from the rest of the cropped image.
 *   **Contour validation:** Rejects contours based on area (relative to the crop) and aspect ratio, distinguishing car license plates (rectangular) from motorcycle license plates (nearly square).
@@ -48,8 +48,9 @@ Make sure you have cloned the repository, downloaded the dataset from the link p
 # Runs the entire pipeline using the paths set in the Python file
 python Pipeline.py
 
-# Runs the grid search; the outputs are saved to
-python Pipeline.py gridsearchdel path “GRIDSEARCH_OUTPUT\gridsearch_bordi.json”
+# Runs the grid search on the segmentation parameters (maximizes the mean IoU against the CVAT annotations)
+python Pipeline.py gridsearch
+> **Note:** the grid search uses the crops and the crop file produced by the pipeline, so the pipeline must be run before this command. 
 
 # Runs the code to evaluate the pipeline output
 python Evaluation.py

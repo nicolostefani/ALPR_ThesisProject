@@ -4,7 +4,7 @@ The following project implements a complete pipeline for the **localization, seg
 The system is designed to be robust and accurate, leveraging advanced computer vision and machine learning techniques to ensure optimal performance even under varying lighting conditions and from different camera angles.
 
 ## Dataset and Models
-The complete dataset (4K videos + annotations in CVAT XML format) can be downloaded from the following link: **https://short-url.cc/1D9qG**
+The complete dataset (4K videos + annotations in CVAT XML format) can be downloaded from the following [link](https://unipdit-my.sharepoint.com/:f:/g/personal/nicolo_stefani_3_studenti_unipd_it/IgB3AzMZkmIeR5OmXM2EFHq3AcMnanRRKBbp2Q2TyHYoNdY).
 
 ## Pipeline Architecture
 
